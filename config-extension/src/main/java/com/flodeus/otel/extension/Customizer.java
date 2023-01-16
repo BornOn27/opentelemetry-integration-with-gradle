@@ -1,4 +1,4 @@
-package com.newrelic.otel.extension;
+package com.flodeus.otel.extension;
 
 import static io.opentelemetry.semconv.resource.attributes.ResourceAttributes.SERVICE_INSTANCE_ID;
 
