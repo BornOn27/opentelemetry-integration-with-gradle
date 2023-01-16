@@ -1,4 +1,0 @@
-com/flodeus/integration/OpenTelemetryIntegration.java
- com.flodeus.integration.OpenTelemetryIntegration
-com/flodeus/integration/health/Probe.java
- com.flodeus.integration.health.Probe
