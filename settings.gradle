@@ -1,0 +1,7 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'opentelemetry-integration-with-gradle'
+include 'config-extension'

@@ -1,12 +1,19 @@
 plugins {
     id 'org.springframework.boot' version '2.5.5'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+    id 'de.undercouch.download' version '4.1.1'
 }
 
 apply plugin: 'java'
 
 repositories {
     mavenCentral()
+}
+
+bootJar{
+    dependsOn("downloadAgent")
+    dependsOn(":config-extension:shadowJar")
+    project(":config-extension").buildDir.toString()
 }
 
 group = 'com.flodeus'
@@ -17,4 +24,15 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.5'
     implementation 'org.springframework.boot:spring-boot-autoconfigure:2.5.5'
     implementation 'org.springframework.boot:spring-boot-devtools:2.5.5'
+
+    compile 'io.micrometer:micrometer-registry-prometheus'
+    implementation(platform("io.opentelemetry:opentelemetry-bom:1.18.0"))
+    implementation("io.opentelemetry:opentelemetry-api")
+}
+
+
+task downloadAgent(type: Download) {
+    src "https://github.com/open-telemetry/opentelemetry-java-instrumentation/releases/download/v1.17.0/opentelemetry-javaagent.jar"
+    dest project.buildDir.toString() + "/otel/opentelemetry-javaagent.jar"
+    overwrite true
 }
