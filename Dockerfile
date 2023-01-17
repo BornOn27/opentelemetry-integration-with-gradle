@@ -6,9 +6,6 @@ RUN gradle clean build -x test
 
 FROM amazoncorretto:11.0.16
 
-RUN yum -y install telnet
-RUN yum -y install net-tools
-
 ENV PORT 8080
 EXPOSE 8080
 
